@@ -100,4 +100,4 @@ key1
 key2
 ```
 
-`key2` in `test.txt` will not be replace, because it not declare in `filePathToKey.txt` to corresponding file
+`key2` in `test.txt` will not be replace, because `key2` not declare in `filePathToKey.txt` to corresponding file
