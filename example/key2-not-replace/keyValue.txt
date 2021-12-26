@@ -1,0 +1,2 @@
+key1 = [it is key1]
+key2 = [it is key2]
