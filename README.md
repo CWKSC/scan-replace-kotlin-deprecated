@@ -73,11 +73,13 @@ Format of `keyValue.txt` is
 ...
 ```
 
-White space ` ` in left and right will be trim
+White space ` `  in left and right will be trim
 
 ___
 
-`<path>` can be under directory, e.g. `dir1/test.txt` 
+`<path>` can refer under directory
+
+e.g. `dir1/test.txt` 
 
 ___
 
