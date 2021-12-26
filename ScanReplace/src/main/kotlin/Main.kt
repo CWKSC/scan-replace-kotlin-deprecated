@@ -26,18 +26,29 @@ fun createByKeyToFileName(vararg keyToFileName: Pair<String, List<String>>) {
     global_filePathToKey = filePathToKey
 }
 
+fun printUsage() {
+    println()
+    println("Usage: java -jar ScanReplace-<version>.jar <filePathToKeyFilePath> <keyValueFilePath> [outputFolderPath]")
+}
+
 fun main(args: Array<String>) {
 
     // Display help message //
     if (args.size == 1 && (args[0] == "--help" || args[0] == "help" || args[0] == "-?" || args[0] == "?")) {
-        println("Usage: java -jar scanReplace.jar <filePathToKeyFilePath> <keyValueFilePath>")
+        printUsage()
         return
     }
 
-    // Wrong arguments //
-    if (args.size != 2) {
-        println("Usage: java -jar scanReplace.jar <filePathToKeyFilePath> <keyValueFilePath>")
+    // Wrong number of arguments //
+    if (args.size != 2 && args.size != 3) {
+        println("[Error] Wrong number of arguments")
+        printUsage()
         return
+    }
+
+    var outputFolderPath = "" // replace content in place
+    if (args.size == 3) {
+        outputFolderPath = args[2] + "/"
     }
 
     println()
@@ -67,7 +78,7 @@ fun main(args: Array<String>) {
     println("[Read filePathToKey file]")
     val filePathToKey = mutableListOf<Pair<String, List<String>>>()
     filePathToKeyFile.forEachLine { line ->
-        if(line.trim() == "") return@forEachLine
+        if (line.trim() == "") return@forEachLine
         val (filePath, keyListString) = line.split("=").map { it.trim() }
         val keyList = keyListString.split(",").map { key -> key.trim() }
         filePathToKey.add(filePath to keyList)
@@ -80,7 +91,7 @@ fun main(args: Array<String>) {
     println("[Read keyValue file]")
     val keyValue = mutableMapOf<String, String>()
     keyValueFile.forEachLine { line ->
-        if(line.trim() == "") return@forEachLine
+        if (line.trim() == "") return@forEachLine
         val (key, value) = line.split("=").map { it.trim() }
         keyValue[key] = value
         println("keyValue: $key -> $value")
@@ -96,7 +107,7 @@ fun main(args: Array<String>) {
 
         // Check if file exists //
         val file = File(filePath)
-        if(!file.exists()) {
+        if (!file.exists()) {
             println("File not found: $filePath")
             return@forEach
         }
@@ -114,9 +125,9 @@ fun main(args: Array<String>) {
         }
 
         // Output file //
-        val outputFile = File("output_ScanReplace/$filePath")
+        val outputFile = File("$outputFolderPath$filePath")
         println("[$filePath] -> $outputFile")
-        outputFile.parentFile.mkdirs()
+        outputFile.parentFile?.mkdirs()
         outputFile.writeText(content)
     }
 
