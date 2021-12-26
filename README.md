@@ -5,13 +5,13 @@ A tool for scan and replace file content
 ## Usage
 
 ```
-java -jar ScanReplace-<version>.jar <filePathToKeyFilePath> <keyValueFilePath>
+java -jar ScanReplace-<version>.jar <filePathToKeyFilePath> <keyValueFilePath> [outputFolderPath]
 ```
 
 Example:
 
 ```
-java -jar ScanReplace-1.0.0.jar filePathToKey.txt keyValue.txt
+java -jar ScanReplace-1.1.0.jar filePathToKey.txt keyValue.txt
 ```
 
 ## Get Started
@@ -45,9 +45,7 @@ Run script
 java -jar ScanReplace-<version>.jar filePathToKey.txt keyValue.txt
 ```
 
-It will generate a output folder `output_ScanReplace`, contain one file `test.txt`
-
-Content of `output_ScanReplace/test.txt` will be
+Content of `test.txt` will change to be
 
 ```
 [it is key 1]
@@ -101,3 +99,22 @@ key2
 ```
 
 `key2` in `test.txt` will not be replace, because `key2` not declare in `filePathToKey.txt` to corresponding file
+
+You can check out a example in `example/key2-not-replace/`
+
+___
+
+Option `[outputFolderPath]` set output folder
+
+All output file with `[outputFolderPath]` as parent directory
+
+For example:
+
+```
+java -jar ScanReplace-<version>.jar <filePathToKeyFilePath> <keyValueFilePath> output
+```
+
+Leave it blank will replace file in-place
+
+___
+
