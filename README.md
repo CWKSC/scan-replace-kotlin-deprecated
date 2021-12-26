@@ -2,6 +2,8 @@
 
 A tool for scan and replace file content
 
+Instead of global search and replace, it can specify replace scope
+
 ## Usage
 
 ```
