@@ -73,7 +73,7 @@ Format of `keyValue.txt` is
 ...
 ```
 
-White space ` ` in left and right will be trim
+White space in left and right will be trim
 
 ___
 
