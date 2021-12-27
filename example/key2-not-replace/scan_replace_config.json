@@ -1,5 +1,9 @@
 {
     "file_key": "file_key.json",
     "key_value": "key_value.json",
-    "output": ""
+    "output": "",
+    "file_prefix": "",
+    "file_suffix": "",
+    "key_prefix": "",
+    "key_suffix": ""
 }
