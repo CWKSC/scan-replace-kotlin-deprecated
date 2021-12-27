@@ -20,9 +20,8 @@ fun loadResource() {
 
     try {
 
-        println()
-
         Resource.config = Json.decodeFromString(File("scan_replace_config.json").readText())
+        println()
         println("[Config]")
         println(jsonPrint.encodeToString(Resource.config))
 
