@@ -72,7 +72,7 @@ Content of `test.txt` will change to be
 
 ## Document
 
-#### `file_key.json`
+### `file_key.json`
 
 ```json
 {
@@ -81,13 +81,13 @@ Content of `test.txt` will change to be
 }
 ```
 
-##### filePath
+#### filePath
 
 `filePath` in `file_key.json` can refer under directory
 
 e.g. `dir1/dir2/test.txt` 
 
-##### key
+#### key
 
 Only the key declare in `file_key.json` to corresponding file will be scan and replace
 
@@ -113,7 +113,7 @@ key2
 
 You can check out a example in `example/key2-not-replace/`
 
-#### `key_value.json`
+### `key_value.json`
 
 ```json
 {
@@ -122,7 +122,7 @@ You can check out a example in `example/key2-not-replace/`
 }
 ```
 
-#### `scan-replace-config.json`
+### `scan-replace-config.json`
 
 ```json
 {
@@ -136,26 +136,22 @@ You can check out a example in `example/key2-not-replace/`
 }
 ```
 
-##### file_key
+#### file_key
 
-Define a path of file_key json
+Define a path of file_key json, default is `file_key.json`
 
-##### key_value
+#### key_value
 
-Define a path of key_value json
+Define a path of key_value json, default is `key_value.json`
 
-##### output
+#### output
 
-Parameter `output` in `scan-replace-config.json` is use to set output folder
-
-All output file with `output` as parent directory
-
-For example:
+Define a path of output folder, default is empty
 
 ```json
 {
-    "..." : "..."
-    "output": "output"
+    "..." : "...",
+    "output": "output",
     "..." : "..."
 }
 ```
@@ -164,7 +160,7 @@ Leave it blank will replace file in-place
 
 You can check out a example in `example/output-folder/`
 
-##### file_prefix, file_suffix
+#### file_prefix, file_suffix
 
 It is a global setting of file path with prefix and suffix
 
@@ -174,13 +170,13 @@ A common setting is prefix with some folder, to change the root of reference in 
 
 ```json
 {
-    "..." : "..."
+    "..." : "...",
     "file_prefix": "directory/",
     "file_suffix": ""
 }
 ```
 
-All filePath in `file_key.json` will append prefix and suffix
+All `filePath` in `file_key.json` will append prefix and suffix
 
 ```json
 {
@@ -198,7 +194,7 @@ equivalent to
 }
 ```
 
-##### key_prefix key_suffix
+#### key_prefix key_suffix
 
 It is a global setting of searching key with prefix and suffix
 
@@ -206,7 +202,7 @@ A common setting is prefix with `<` and suffix with `>` (or `{{` and `}}` )
 
 ```json
 {
-    "..." : "..."
+    "..." : "...",
     "key_prefix": "<",
     "key_suffix": ">"
 }
@@ -216,7 +212,7 @@ All key in `key_value.json` will append prefix and suffix
 
 ```json
 {
-    "key1" : "value"
+    "key1" : "value",
     "key2" : "value"
 }
 ```
@@ -225,7 +221,7 @@ equivalent to
 
 ```json
 {
-    "<key1>" : "value"
+    "<key1>" : "value",
     "<key2>" : "value"
 }
 ```
