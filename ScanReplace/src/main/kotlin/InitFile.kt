@@ -3,13 +3,11 @@ import java.io.File
 
 const val default_file_key = """{
     "file_path": ["key"]
-}
-"""
+}"""
 
 const val default_key_value = """{
     "key": "value"
-}
-"""
+}"""
 
 fun createFileIfNotExistsByDefault(filePath: String, default: String = default_file_key) {
     val format = "%-30s %s"
