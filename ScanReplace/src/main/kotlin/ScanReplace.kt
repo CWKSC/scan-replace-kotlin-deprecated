@@ -33,8 +33,7 @@ fun scanReplace() {
         }
 
         // Output file //
-        val outputDirectory = if(Resource.config.output == "") "" else Resource.config.output + "/"
-        val outputFile = File("$outputDirectory$filePath")
+        val outputFile = File("${Resource.config.output}$filePath")
         println("[$filePath] -> $outputFile")
         outputFile.parentFile?.mkdirs()
         outputFile.writeText(content)
