@@ -146,17 +146,17 @@ Define a path of key_value json, default is `key_value.json`
 
 #### output
 
-Define a path of output folder, default is empty
+Define a path of output folder, default is empty `""`
 
 ```json
 {
     "..." : "...",
-    "output": "output",
+    "output": "output/",
     "..." : "..."
 }
 ```
 
-Leave it blank will replace file in-place
+Leave it blank `""` will replace file in-place
 
 You can check out a example in `example/output-folder/`
 
