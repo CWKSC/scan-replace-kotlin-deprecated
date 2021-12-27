@@ -77,7 +77,7 @@ Format of `file_key.json` is
 ```json
 {
     "filePath": ["key1", "key2", /* ... */],
-    /* ... */
+    // ... 
 }
 ```
 
