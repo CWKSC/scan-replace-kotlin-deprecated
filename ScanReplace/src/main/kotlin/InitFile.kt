@@ -21,6 +21,7 @@ fun createFileIfNotExistsByDefault(filePath: String, default: String = default_f
 }
 
 fun initFile() {
+    println()
     createFileIfNotExistsByDefault("file_key.json", default_file_key)
     createFileIfNotExistsByDefault("key_value.json", default_key_value)
     createFileIfNotExistsByDefault("scan_replace_config.json", jsonPrint.encodeToString(Config()))
