@@ -35,7 +35,7 @@ scan_replace_config.json       created
 
 Change `file_key.json` content to
 
-```
+```json
 {
     "test.txt": ["key1", "key2"]
 }
@@ -43,7 +43,7 @@ Change `file_key.json` content to
 
 Change `key_value.json` content to
 
-```
+```json
 {
     "key1": "[It is key1]",
     "key2": "[It is key2]"
@@ -76,8 +76,8 @@ Format of `file_key.json` is
 
 ```json
 {
-    "filePath": ["key1", "key2", ...],
-    ...
+    "filePath": ["key1", "key2", /* ... */],
+    /* ... */
 }
 ```
 
@@ -86,7 +86,7 @@ Format of `keyValue.txt` is
 ```json
 {
     "key": "value",
-    ...
+    /* ... */
 }
 ```
 
@@ -102,13 +102,13 @@ Only the key declare in `file_key.json` to corresponding file will be scan and r
 
 For example
 
-```
+```json
 {
     "test.txt": ["key1", "key2"]
 }
 ```
 
-```
+```json
 {
     "key1": "[It is key1]",
     "key2": "[It is key2]"
@@ -132,11 +132,12 @@ All output file with `output` as parent directory
 
 For example:
 
-```
+```json
 {
     "file_key": "file_key.json",
     "key_value": "key_value.json",
     "output": "output"
+    /* ... */
 }
 ```
 
