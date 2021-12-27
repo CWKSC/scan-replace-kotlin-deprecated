@@ -70,9 +70,9 @@ Content of `test.txt` will change to be
 [It is key2]
 ```
 
-## Note
+## Document
 
-Format of `file_key.json` is a object 
+#### `file_key.json`
 
 ```json
 {
@@ -81,40 +81,15 @@ Format of `file_key.json` is a object
 }
 ```
 
-Format of `keyValue.txt` is
-
-```json
-{
-    "key": "value",
-    "...": "..."
-}
-```
-
-Default content of `scan-replace-config.json`
-
-```json
-{
-    "file_key": "file_key.json",
-    "key_value": "key_value.json",
-    "output": "",
-    "file_prefix": "",
-    "file_suffix": "",
-    "key_prefix": "",
-    "key_suffix": ""
-}
-```
-
-___
+##### filePath
 
 `filePath` in `file_key.json` can refer under directory
 
 e.g. `dir1/dir2/test.txt` 
 
-___
+##### key
 
 Only the key declare in `file_key.json` to corresponding file will be scan and replace
-
-For example
 
 ```json
 {
@@ -138,7 +113,38 @@ key2
 
 You can check out a example in `example/key2-not-replace/`
 
-___
+#### `key_value.json`
+
+```json
+{
+    "key": "value",
+    "...": "..."
+}
+```
+
+#### `scan-replace-config.json`
+
+```json
+{
+    "file_key": "file_key.json",
+    "key_value": "key_value.json",
+    "output": "",
+    "file_prefix": "",
+    "file_suffix": "",
+    "key_prefix": "",
+    "key_suffix": ""
+}
+```
+
+##### file_key
+
+Define a path of file_key json
+
+##### key_value
+
+Define a path of key_value json
+
+##### output
 
 Parameter `output` in `scan-replace-config.json` is use to set output folder
 
@@ -148,8 +154,7 @@ For example:
 
 ```json
 {
-    "file_key": "file_key.json",
-    "key_value": "key_value.json",
+    "..." : "..."
     "output": "output"
     "..." : "..."
 }
@@ -157,7 +162,73 @@ For example:
 
 Leave it blank will replace file in-place
 
-___
+You can check out a example in `example/output-folder/`
+
+##### file_prefix, file_suffix
+
+It is a global setting of file path with prefix and suffix
+
+A common setting is prefix with some folder, to change the root of reference in `file_key.json`
+
+`file_suffix` is uncommon to use but provided
+
+```json
+{
+    "..." : "..."
+    "file_prefix": "directory/",
+    "file_suffix": ""
+}
+```
+
+All filePath in `file_key.json` will append prefix and suffix
+
+```json
+{
+    "filePath1": ["key1", "key2"],
+    "filePath2": ["key1", "key2"]
+}
+```
+
+equivalent to
+
+```json
+{
+    "directory/filePath1": ["key1", "key2"],
+    "directory/filePath2": ["key1", "key2"]
+}
+```
+
+##### key_prefix key_suffix
+
+It is a global setting of searching key with prefix and suffix
+
+A common setting is prefix with `<` and suffix with `>` (or `{{` and `}}` )
+
+```json
+{
+    "..." : "..."
+    "key_prefix": "<",
+    "key_suffix": ">"
+}
+```
+
+All key in `key_value.json` will append prefix and suffix
+
+```json
+{
+    "key1" : "value"
+    "key2" : "value"
+}
+```
+
+equivalent to
+
+```json
+{
+    "<key1>" : "value"
+    "<key2>" : "value"
+}
+```
 
 ### Build jar
 
