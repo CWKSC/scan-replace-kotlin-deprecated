@@ -5,7 +5,9 @@ fun scanReplace() {
 
     println()
     println("[Scan - Replace]")
-    Resource.fileToKey.forEach { (filePath, keyList) ->
+    Resource.fileToKey.forEach { (_filePath, keyList) ->
+
+        val filePath = Resource.config.file_prefix + _filePath + Resource.config.file_suffix
 
         println()
         println("[$filePath] Start scan - replace")
@@ -25,12 +27,14 @@ fun scanReplace() {
                 println("[$filePath] Key not found: $key")
                 return
             }
-            content = content.replace(key, value)
-            println("[$filePath] $key -> $value")
+            val replaceKey = Resource.config.key_prefix + key + Resource.config.key_suffix
+            content = content.replace(replaceKey, value)
+            println("[$filePath] $replaceKey -> $value")
         }
 
         // Output file //
-        val outputFile = File("${Resource.config.output}$filePath")
+        val outputDirectory = if(Resource.config.output == "") "" else Resource.config.output + "/"
+        val outputFile = File("$outputDirectory$filePath")
         println("[$filePath] -> $outputFile")
         outputFile.parentFile?.mkdirs()
         outputFile.writeText(content)
