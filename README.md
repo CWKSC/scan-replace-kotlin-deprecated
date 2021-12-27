@@ -25,7 +25,7 @@ Download latest version on [Release](https://github.com/CWKSC/ScanReplace.kt/rel
 java -jar ScanReplace-<version>.jar init
 ```
 
-Following message show in screen
+Following message will show in screen
 
 ```
 file_key.json                  created
