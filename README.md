@@ -151,11 +151,17 @@ For example:
     "file_key": "file_key.json",
     "key_value": "key_value.json",
     "output": "output"
-    /* ... */
+    "..." : "..."
 }
 ```
 
 Leave it blank will replace file in-place
 
 ___
+
+### Build jar
+
+```
+.\gradlew jar
+```
 
