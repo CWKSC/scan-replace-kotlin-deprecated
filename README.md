@@ -72,12 +72,12 @@ Content of `test.txt` will change to be
 
 ## Note
 
-Format of `file_key.json` is
+Format of `file_key.json` is a object 
 
 ```json
 {
-    "filePath": ["key1", "key2", /* ... */],
-    // ... 
+    "filePath": ["key1", "key2"],
+    "...": ["..."]
 }
 ```
 
@@ -86,7 +86,21 @@ Format of `keyValue.txt` is
 ```json
 {
     "key": "value",
-    /* ... */
+    "...": "..."
+}
+```
+
+Default content of `scan-replace-config.json`
+
+```json
+{
+    "file_key": "file_key.json",
+    "key_value": "key_value.json",
+    "output": "",
+    "file_prefix": "",
+    "file_suffix": "",
+    "key_prefix": "",
+    "key_suffix": ""
 }
 ```
 
