@@ -7,113 +7,137 @@ Instead of global search and replace, it can specify replace scope
 ## Usage
 
 ```
-java -jar ScanReplace-<version>.jar <filePathToKeyFilePath> <keyValueFilePath> [outputFolderPath]
+java -jar ScanReplace-<version>.jar [init]
 ```
 
 Example:
 
 ```
-java -jar ScanReplace-1.1.0.jar filePathToKey.txt keyValue.txt
+java -jar ScanReplace-1.2.0.jar
+java -jar ScanReplace-1.2.0.jar init
 ```
 
 ## Get Started
 
-Download latest version on [Release](https://github.com/CWKSC/ScanReplace.kt/releases)
-
-Create `filePathToKey.txt`
+Download latest version on [Release](https://github.com/CWKSC/ScanReplace.kt/releases), type
 
 ```
-test.txt = key1, key2
+java -jar ScanReplace-<version>.jar init
 ```
 
-Create `keyValue.txt`
+Following message show in screen
 
 ```
-key1 = [it is key 1]
-key2 = [key2 here]
+file_key.json                  created
+key_value.json                 created
+scan_replace_config.json       created
+```
+
+Change `file_key.json` content to
+
+```
+{
+    "test.txt": ["key1", "key2"]
+}
+```
+
+Change `key_value.json` content to
+
+```
+{
+    "key1": "[It is key1]",
+    "key2": "[It is key2]"
+}
 ```
 
 Create `test.txt`
 
 ```
 key1
-meow 42
 key2
 ```
 
-Run script
+Type
 
 ```
-java -jar ScanReplace-<version>.jar filePathToKey.txt keyValue.txt
+java -jar ScanReplace-<version>.jar
 ```
 
 Content of `test.txt` will change to be
 
 ```
-[it is key 1]
-meow 42
-[key2 here]
+[It is key1]
+[It is key2]
 ```
 
 ## Note
 
-Format of `filePathToKey.txt` is
+Format of `file_key.json` is
 
-```
-<path> = <key1>, <key2>, ...
-<path> = <key1>, <key2>, ...
-...
+```json
+{
+    "filePath": ["key1", "key2", ...],
+    ...
+}
 ```
 
 Format of `keyValue.txt` is
 
+```json
+{
+    "key": "value",
+    ...
+}
 ```
-<key> = <value>
-<key> = <value>
-...
-```
-
-White space in left and right will be trim
 
 ___
 
-`<path>` can refer under directory
+`filePath` in `file_key.json` can refer under directory
 
-e.g. `dir1/test.txt` 
+e.g. `dir1/dir2/test.txt` 
 
 ___
 
-Only the key declare in `filePathToKey.txt` to corresponding file will be scan and replace
+Only the key declare in `file_key.json` to corresponding file will be scan and replace
 
 For example
 
 ```
-// filePathToKey.txt
-test.txt = key1
+{
+    "test.txt": ["key1", "key2"]
+}
+```
 
-// keyValue.txt
-key1 = [it is key1]
-key2 = [it is key2]
+```
+{
+    "key1": "[It is key1]",
+    "key2": "[It is key2]"
+}
+```
 
-// test.txt
+```
 key1
 key2
 ```
 
-`key2` in `test.txt` will not be replace, because `key2` not declare in `filePathToKey.txt` to corresponding file
+`key2` in `test.txt` will not be replace, because `key2` not declare in `file_key.json` to corresponding file
 
 You can check out a example in `example/key2-not-replace/`
 
 ___
 
-Option `[outputFolderPath]` set output folder
+`output` in `scan-replace-config.json` set output folder
 
-All output file with `[outputFolderPath]` as parent directory
+All output file with `output` as parent directory
 
 For example:
 
 ```
-java -jar ScanReplace-<version>.jar <filePathToKeyFilePath> <keyValueFilePath> output
+{
+    "file_key": "file_key.json",
+    "key_value": "key_value.json",
+    "output": "output"
+}
 ```
 
 Leave it blank will replace file in-place
