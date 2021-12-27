@@ -13,8 +13,8 @@ java -jar ScanReplace-<version>.jar [init]
 Example:
 
 ```
-java -jar ScanReplace-1.2.0.jar
-java -jar ScanReplace-1.2.0.jar init
+java -jar ScanReplace-0.1.0.jar
+java -jar ScanReplace-0.1.0.jar init
 ```
 
 ## Get Started
