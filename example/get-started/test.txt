@@ -1,3 +1,2 @@
 key1
-meow 42
 key2

@@ -1,1 +1,0 @@
-test.txt = key1, key2
