@@ -126,7 +126,7 @@ You can check out a example in `example/key2-not-replace/`
 
 ___
 
-`output` in `scan-replace-config.json` set output folder
+Parameter `output` in `scan-replace-config.json` is use to set output folder
 
 All output file with `output` as parent directory
 
