@@ -1,11 +1,17 @@
 import kotlin.system.exitProcess
 import java.io.File
 
-
-
 fun handleArgs(args: Array<String>) {
 
     val argsList = args.toMutableList()
+
+    eliminateEvaluteFlag(argsList)
+    
+    parseArgs(argsList)
+
+}
+
+fun eliminateEvaluteFlag(argsList: MutableList<String>) {
 
     // --config | -c 
     if (argsList.contains("--config") || argsList.contains("-c")) {
@@ -20,23 +26,24 @@ fun handleArgs(args: Array<String>) {
 
     // --question | -q 
     if(argsList.contains("--question") || argsList.contains("-q")){
+        val index_question = argsList.indexOf("--question")
+        val index_q = argsList.indexOf("-q")
+        val index = if(index_question != -1) index_question else index_q
+        argsList.removeAt(index)
         Resource.question_mode = true
-        println()
-        println("Question mode ON")
-        println()
     }
 
+}
+
+
+fun parseArgs(argsList: MutableList<String>) {
+
     // Init config template file //
-    if (args.size == 1 && args[0] == "init") {
+    if (argsList.size == 1 && argsList[0] == "init") {
         initFile()
         exitProcess(exitCode_init)
     }
 
-
-    // Wrong number of arguments //
-    if (args.size >= 2) {
-        printUsage()
-        exitProcess(exitCode_wrong_number_of_args)
-    }
-
 }
+
+

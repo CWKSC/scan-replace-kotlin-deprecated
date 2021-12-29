@@ -27,32 +27,34 @@ fun loadResource() {
 
     try {
     
+        if(Resource.question_mode){
+            println("Question mode ON")
+            println()
+        }
 
         if(!Resource.configFolder.isDirectory()){
-            println()
             println("[Error] ${Resource.configFolderPath} not a directory (--config <configFolderPath>) ")
             println()
             exitProcess(exitCode_configFolderPath_not_a_directory)
         }
 
-        Resource.config = Json.decodeFromString(File("scan_replace_config.json").readText())
-        println()
+        Resource.config = Json.decodeFromString(File(Resource.configFolder.name + "/scan_replace_config.json").readText())
         println("[Config]")
         println(jsonPrint.encodeToString(Resource.config))
-
-        Resource.fileToKey = Json.decodeFromString(File(Resource.config.file_key).readText())
         println()
+
+        Resource.fileToKey = Json.decodeFromString(File(Resource.configFolder.name + Resource.config.file_key).readText())
         println("[FileToKey]")
         println(jsonPrint.encodeToString(Resource.fileToKey))
-
-        Resource.keyValue = Json.decodeFromString(File(Resource.config.key_value).readText())
         println()
+
+        Resource.keyValue = Json.decodeFromString(File(Resource.configFolder.name + Resource.config.key_value).readText())
         println("[keyValue]")
         println(jsonPrint.encodeToString(Resource.keyValue))
+        println()
 
     } catch (e: FileNotFoundException) {
 
-        println()
         println("File not found: ${e.message}")
         printUsage()
         exitProcess(exitCode_file_not_found)

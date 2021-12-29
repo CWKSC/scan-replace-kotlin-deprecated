@@ -9,7 +9,7 @@ const val default_key_value = """{
     "key": "value"
 }"""
 
-const val format = "%-40s %s"
+const val format = "%-50s %s"
 
 fun createFileIfNotExistsByDefault(filePath: String, default: String = default_file_key) {
     val file = File(filePath)
@@ -22,7 +22,12 @@ fun createFileIfNotExistsByDefault(filePath: String, default: String = default_f
 }
 
 fun initFile() {
-    println()
+
+    if (Resource.question_mode) {
+        println("Question mode ON")
+        println()
+    }
+
     if (!Resource.configFolder.exists()) {
         Resource.configFolder.mkdir()
         println(format.format(Resource.configFolder, "created"))
@@ -30,6 +35,7 @@ fun initFile() {
         println(format.format(Resource.configFolder, "already exists"))
     }
     println()
+
     createFileIfNotExistsByDefault("${Resource.configFolder}/file_key.json", default_file_key)
     createFileIfNotExistsByDefault("${Resource.configFolder}/key_value.json", default_key_value)
     createFileIfNotExistsByDefault("${Resource.configFolder}/scan_replace_config.json", jsonPrint.encodeToString(Config()))
