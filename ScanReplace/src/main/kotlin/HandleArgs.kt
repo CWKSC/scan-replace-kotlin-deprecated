@@ -5,19 +5,19 @@ fun handleArgs(args: Array<String>) {
 
     val argsList = args.toMutableList()
 
-    eliminateEvaluteFlag(argsList)
-    
+    eliminateEvaluateFlag(argsList)
+
     parseArgs(argsList)
 
 }
 
-fun eliminateEvaluteFlag(argsList: MutableList<String>) {
+fun eliminateEvaluateFlag(argsList: MutableList<String>) {
 
     // --config | -c 
     if (argsList.contains("--config") || argsList.contains("-c")) {
-        val index_config = argsList.indexOf("--config")
-        val index_c = argsList.indexOf("-c")
-        val index = if(index_config != -1) index_config else index_c
+        val indexConfig = argsList.indexOf("--config")
+        val indexC = argsList.indexOf("-c")
+        val index = if (indexConfig != -1) indexConfig else indexC
         Resource.configFolderPath = argsList[index + 1]
         argsList.removeAt(index)
         argsList.removeAt(index)
@@ -25,10 +25,10 @@ fun eliminateEvaluteFlag(argsList: MutableList<String>) {
     Resource.configFolder = File(Resource.configFolderPath)
 
     // --question | -q 
-    if(argsList.contains("--question") || argsList.contains("-q")){
-        val index_question = argsList.indexOf("--question")
-        val index_q = argsList.indexOf("-q")
-        val index = if(index_question != -1) index_question else index_q
+    if (argsList.contains("--question") || argsList.contains("-q")) {
+        val indexQuestion = argsList.indexOf("--question")
+        val indexQ = argsList.indexOf("-q")
+        val index = if (indexQuestion != -1) indexQuestion else indexQ
         argsList.removeAt(index)
         Resource.question_mode = true
     }

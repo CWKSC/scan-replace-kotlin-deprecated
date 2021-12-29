@@ -11,12 +11,11 @@ fun scanReplace() {
         val filePath = Resource.config.file_prefix + _filePath + Resource.config.file_suffix
 
         println("[$filePath] Start scan - replace")
-        println()
 
         // Check if file exists //
         val file = File(filePath)
         if (!file.exists()) {
-            println("[Error] File not found: $filePath")
+            println("[Warning] File not found: $filePath, skip")
             return@forEach
         }
 
@@ -35,10 +34,12 @@ fun scanReplace() {
         }
 
         // Output file //
-        val outputFile = File("${Resource.config.output_prefix}$filePath${Resource.config.output_suffix}")
+        val outputFile = File("${Resource.config.output_prefix}$_filePath${Resource.config.output_suffix}")
         println("[$filePath] -> $outputFile")
         outputFile.parentFile?.mkdirs()
         outputFile.writeText(content)
+
+        println()
     }
 
     println("[Done]")
