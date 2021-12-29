@@ -6,7 +6,11 @@ import java.io.FileNotFoundException
 import kotlin.system.exitProcess
 
 object Resource {
+    lateinit var configFolder: File
+    var question_mode = false
+
     lateinit var config: Config
+
     lateinit var fileToKey: Map<String, List<String>>
     lateinit var keyValue: Map<String, String>
 }
