@@ -6,8 +6,11 @@ import java.io.FileNotFoundException
 import kotlin.system.exitProcess
 
 object Resource {
-    lateinit var configFolder: File
+    // Args flag value
+    var configFolderPath =  ".scan-replace"
     var question_mode = false
+
+    lateinit var configFolder: File
 
     lateinit var config: Config
 
@@ -23,6 +26,14 @@ val jsonPrint = Json {
 fun loadResource() {
 
     try {
+    
+
+        if(!Resource.configFolder.isDirectory()){
+            println()
+            println("[Error] ${Resource.configFolderPath} not a directory (--config <configFolderPath>) ")
+            println()
+            exitProcess(exitCode_configFolderPath_not_a_directory)
+        }
 
         Resource.config = Json.decodeFromString(File("scan_replace_config.json").readText())
         println()
@@ -47,5 +58,7 @@ fun loadResource() {
         exitProcess(exitCode_file_not_found)
 
     }
+
+
 
 }

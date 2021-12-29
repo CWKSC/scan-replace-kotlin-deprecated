@@ -7,24 +7,18 @@ fun handleArgs(args: Array<String>) {
 
     val argsList = args.toMutableList()
 
-    var configFolderPath = ".scan-replace"
+    // --config | -c 
     if (argsList.contains("--config") || argsList.contains("-c")) {
         val index_config = argsList.indexOf("--config")
         val index_c = argsList.indexOf("-c")
         val index = if(index_config != -1) index_config else index_c
-        configFolderPath = argsList[index + 1]
+        Resource.configFolderPath = argsList[index + 1]
         argsList.removeAt(index)
         argsList.removeAt(index)
     }
+    Resource.configFolder = File(Resource.configFolderPath)
 
-    Resource.configFolder = File(configFolderPath)
-    if(!Resource.configFolder.isDirectory()){
-        println()
-        println("[Error] $configFolderPath not a directory (--config <configFolderPath>) ")
-        println()
-        exitProcess(exitCode_configFolderPath_not_a_directory)
-    }
-
+    // --question | -q 
     if(argsList.contains("--question") || argsList.contains("-q")){
         Resource.question_mode = true
         println()
